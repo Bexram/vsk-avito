@@ -3,22 +3,33 @@
         <h1 class="form-text">Оформите страховку на свои услуги</h1>
         <span class="form-text description">С ней легче привлечь клиентов. Если что-то сломается или испортится, заказчики могут получить
             до 100 000 ₽ компенсации от Страхового дома ВСК.</span>
-        <div class="form-group">
-            <div class="input-group">
-                <h2>Услуги</h2>
-                <input type="search">
+        <div class="flex-row form-all">
+            <div class="form-group container flex-col">
+                <div class="input-group">
+                    <h2 class="form-text">Услуги</h2>
+                    <input type="search" placeholder="Выберите услугу">
+                </div>
+
+                <div class="input-group">
+                    <h2 class="form-text">Фамилия, имя и отчество</h2>
+                    <input>
+                </div>
+                <div class="contact flex-row">
+                    <div class="container input-group">
+                        <h2 class="form-text">Телефон</h2>
+                        <input>
+                    </div>
+                    <div class="container input-group">
+                        <h2 class="form-text">Почта</h2>
+                        <input>
+                    </div>
+                </div>
+
             </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <h2>Услуги</h2>
-                <input type="search">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <h2>Услуги</h2>
-                <input type="search">
+            <div class="container price flex-col">
+                <span class="form-text description container-col">Выберите услуги, чтобы узнать цену страховки.</span>
+                <button class="pay container-col">Оплатить</button>
+                <span class="form-text grey container-col">Продолжая, я соглашаюсь на обработку персональных данных страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
     </div>
@@ -37,9 +48,78 @@
         margin-right: auto;
         margin-top: 4rem;
     }
-    .form-text{
+
+    .pay {
+        margin-top: 1rem;
+        width: 50%;
+        height: 3rem;
+        background: #00AAFF;
+        border-radius: 6px;
+        border-width: 0px;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1rem;
+        text-align: center;
+        color: #FFFFFF;
+        min-height: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .flex-col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-text {
         font-family: 'Arial';
         font-style: normal;
+    }
+
+    .input-group {
+        margin-bottom: 1rem;
+
+    }
+
+    .form-group {
+        width: 57%;
+    }
+
+    .form-all {
+        margin-top: 2rem;
+        max-height: 260px;
+    }
+
+    .contact {
+        max-width: 580px;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .container {
+        margin: 0 5px;
+        width: 50%;
+    }
+    .container-col {
+
+        width: 70%;
+    }
+
+    .price {
+        padding-top: 2rem;
+        margin-left: 20px;
+        align-items: unsafe center;
+        width: 43%;
+        height: 15.2rem;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.02), 0px 4px 24px rgba(0, 0, 0, 0.07);
+        border-radius: 12px;
+        box-sizing: border-box;
+
     }
 
     h1 {
@@ -47,10 +127,40 @@
         font-weight: 600;
         line-height: 2rem;
     }
+
     .description {
         font-weight: 400;
         font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .grey {
+        font-weight: 400;
+        font-size: 0.7rem;
+        line-height: 1rem;
+        color: #858585;
+    }
+
+    h2 {
+        font-weight: 700;
+        font-size: 0.8rem;
         line-height: 1rem;
     }
+
+    input {
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1rem;
+        padding-left: 1rem;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #F2F1F0;
+        border-radius: 6px;
+        height: 2rem;
+        width: 100%;
+        border-width: 0px;
+        max-width: 580px;
+    }
+
 
 </style>

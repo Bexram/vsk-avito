@@ -35,7 +35,9 @@
         flex-direction: row;
     }
     .flex {
-        height: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
+        height: 50%;
         display: flex;
     }
     img {
