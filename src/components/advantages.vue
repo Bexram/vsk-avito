@@ -29,8 +29,8 @@
 
         <div class="swipe">
             <swiper
-                    :slides-per-view="1"
-                    :space-between="100"
+                    :slides-per-view="1.2"
+                    :space-between="30"
                     @swiper="onSwiper"
                     @slideChange="onSlideChange"
             >
@@ -154,7 +154,7 @@
         .card {
             padding: 10% 10%;
             width: 80%;
-            min-height: 260px;
+            height: 280px;
         }
 
         .swipe {
