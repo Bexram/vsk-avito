@@ -30,6 +30,7 @@
         margin-left: auto;
         margin-right: auto;
         width: 71%;
+        max-width: 970px;
         height: 100%;
         display: flex;
         flex-direction: row;
@@ -43,5 +44,13 @@
     img {
         margin-right: 10px;
         margin-left: 10px;
+    }
+    @media screen and (max-width: 650px) {
+        .flex-row {
+            justify-content: center;
+        }
+        .header-app {
+            height: 4rem;
+        }
     }
 </style>

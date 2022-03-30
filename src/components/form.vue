@@ -27,9 +27,9 @@
 
             </div>
             <div class="container price flex-col">
-                <span class="form-text description container-col">Выберите услуги, чтобы узнать цену страховки.</span>
+                <span class="form-text description mob container-col">Выберите услуги, чтобы узнать цену страховки.</span>
                 <button class="pay container-col">Оплатить</button>
-                <span class="form-text grey container-col">Продолжая, я соглашаюсь на обработку персональных данных страховым акционерным обществом «ВСК».</span>
+                <span class="form-text grey mob container-col">Продолжая, я соглашаюсь на обработку персональных данных страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
     </div>
@@ -42,16 +42,8 @@
 </script>
 
 <style scoped>
-    .body-wrapper {
-        width: 71%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 4rem;
-    }
-
     .pay {
         margin-top: 1rem;
-        width: 50%;
         height: 3rem;
         background: #00AAFF;
         border-radius: 6px;
@@ -76,7 +68,7 @@
     }
 
     .input-group {
-        margin-bottom: 1rem;
+        margin-bottom: 1rem !important;
 
     }
 
@@ -85,8 +77,7 @@
     }
 
     .form-all {
-        margin-top: 2rem;
-        max-height: 260px;
+        margin-top: 2rem !important;
     }
 
     .contact {
@@ -105,7 +96,6 @@
         width: 50%;
     }
     .container-col {
-
         width: 70%;
     }
 
@@ -115,31 +105,12 @@
         align-items: unsafe center;
         width: 43%;
         height: 15.2rem;
-        background: #FFFFFF;
         box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.02), 0px 4px 24px rgba(0, 0, 0, 0.07);
         border-radius: 12px;
         box-sizing: border-box;
 
     }
 
-    h1 {
-        font-size: 2.5rem;
-        font-weight: 600;
-        line-height: 2rem;
-    }
-
-    .description {
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.5rem;
-    }
-
-    .grey {
-        font-weight: 400;
-        font-size: 0.7rem;
-        line-height: 1rem;
-        color: #858585;
-    }
 
     h2 {
         font-weight: 700;
@@ -161,6 +132,37 @@
         border-width: 0px;
         max-width: 580px;
     }
-
+    @media screen and (max-width: 650px) {
+        h1 {
+            font-size: 2.2rem;
+        }
+        .description {
+            font-size: 1.1rem;
+        }
+        .price {
+            width: 100%;
+            margin-left: 0px;
+            box-shadow: 0px 0px 0px;
+        }
+        .container-col {
+            width: 100%;
+        }
+        .flex-row {
+            flex-direction: column;
+            margin: 0 0;
+        }
+        .container {
+            width: 100%;
+            margin: 0 0;
+        }
+        input {
+            height: 3rem;
+        }
+        .mob{
+            font-size: 0.8rem;
+            font-weight: 400;
+            line-height: 1.4rem;
+        }
+    }
 
 </style>
