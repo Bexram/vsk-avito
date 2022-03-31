@@ -85,3 +85,10 @@
 .slide-enter-from[data-v-64321428], .slide-leave-to[data-v-64321428] {
     opacity: .25
 }
+
+@media screen and (max-width: 650px) {
+    .vcp__header-title[data-v-64321428] {
+        display: flex;
+        flex: 1;
+    }
+}

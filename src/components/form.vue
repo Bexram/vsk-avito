@@ -7,21 +7,39 @@
             <div class="form-group container flex-col">
                 <div class="input-group">
                     <h2 class="form-text">Услуги</h2>
-                    <input type="search" placeholder="Выберите услугу">
+                    <vue-single-select
+                            name="foo"
+                            :options="CATEGORY"
+                            option-label="name"
+                            placeholder="Выберите услугу"
+                            @input="onChangeSelectedCategory($event)"
+                    >
+                    </vue-single-select>
                 </div>
+                <div class="input-group" v-if="selected_category">
+                    <h2 class="form-text">Категория</h2>
+                    <vue-single-select
+                            name="foo"
+                            :options="SUBCATEGORIES"
+                            option-label="name"
+                            placeholder="Выберите категорию"
+                            @input="onChangeSelectedSubCategory($event)"
 
+                    >
+                    </vue-single-select>
+                </div>
                 <div class="input-group">
                     <h2 class="form-text">Фамилия, имя и отчество</h2>
-                    <input>
+                    <input class="input">
                 </div>
                 <div class="contact flex-row">
                     <div class="container input-group">
                         <h2 class="form-text">Телефон</h2>
-                        <input>
+                        <input class="input">
                     </div>
                     <div class="container input-group">
                         <h2 class="form-text">Почта</h2>
-                        <input>
+                        <input class="input">
                     </div>
                 </div>
 
@@ -36,8 +54,51 @@
 </template>
 
 <script>
+    import {mapActions, mapGetters} from "vuex";
+    import VueSingleSelect from "vue-single-select";
+
     export default {
-        name: "form-app"
+        name: "form-app",
+        components: {
+            VueSingleSelect
+        },
+        data() {
+            return {
+                selected_category: null,
+                selected_subcategory: null,
+                SUBCATEGORIES: null,
+            }
+        },
+
+        computed: {
+            ...mapGetters({CATEGORY: 'backend/CATEGORY'})
+        },
+        mounted() {
+            this.GET_CATEGORY()
+        },
+        methods: {
+            ...mapActions({
+                GET_CATEGORY: 'backend/GET_CATEGORY',
+
+            }),
+
+            onChangeSelectedCategory(input) {
+                if (input) {
+                    this.selected_category = input.name
+                    for (let i in this.CATEGORY) {
+                        if (this.CATEGORY[i].name === this.selected_category) {
+                            this.SUBCATEGORIES = this.CATEGORY[i].subcategory
+                            console.log(this.SUBCATEGORIES)
+                        }
+                    }
+                }
+            },
+            onChangeSelectedSubCategory(input) {
+                if (input) {
+                    this.selected_subcategory = input.name
+                }
+            }
+        }
     }
 </script>
 
@@ -95,6 +156,7 @@
         margin: 0 5px;
         width: 50%;
     }
+
     .container-col {
         width: 70%;
     }
@@ -118,7 +180,7 @@
         line-height: 1rem;
     }
 
-    input {
+    .input {
         font-weight: 400;
         font-size: 1rem;
         line-height: 1rem;
@@ -132,33 +194,41 @@
         border-width: 0px;
         max-width: 580px;
     }
+
     @media screen and (max-width: 650px) {
         h1 {
             font-size: 2.2rem;
         }
+
         .description {
             font-size: 1.1rem;
         }
+
         .price {
             width: 100%;
             margin-left: 0px;
             box-shadow: 0px 0px 0px;
         }
+
         .container-col {
             width: 100%;
         }
+
         .flex-row {
             flex-direction: column;
             margin: 0 0;
         }
+
         .container {
             width: 100%;
             margin: 0 0;
         }
+
         input {
             height: 3rem;
         }
-        .mob{
+
+        .mob {
             font-size: 0.8rem;
             font-weight: 400;
             line-height: 1.4rem;

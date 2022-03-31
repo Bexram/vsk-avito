@@ -9,9 +9,13 @@
   },
   "dependencies": {
     "@dafcoe/vue-collapsible-panel": "^0.2.0",
+    "axios": "^0.26.1",
     "core-js": "^3.8.3",
+    "sass": "^1.49.10",
+    "sass-loader": "^12.6.0",
     "swiper": "^8.0.7",
     "vue": "^3.2.13",
+    "vue-single-select": "^1.1.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

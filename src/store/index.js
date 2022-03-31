@@ -1,5 +1,5 @@
 import {createStore} from 'vuex'
-import backend from './backend.js'
+import backend from './backend'
 
 
 export default createStore({
