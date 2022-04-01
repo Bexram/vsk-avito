@@ -6,6 +6,7 @@ export default {
     state() {
         return {
             categories: [],
+            price: null,
         }
     },
 
@@ -14,6 +15,9 @@ export default {
         CATEGORY(state) {
             return state.categories;
         },
+        PRICE(state) {
+            return state.price;
+        },
     },
 
 
@@ -21,7 +25,7 @@ export default {
         GET_CATEGORY({commit}) {
             return axios({
                 method: "GET",
-                url: `http://localhost:8000/avito/category/`
+                url: `https://api-creatum.bexram.online/avito/category/`
             })
                 .then((response) => {
                     commit("SET_CATEGORY", response.data);
@@ -32,13 +36,15 @@ export default {
                 });
         },
 
-        GET_PRICE({commit}) {
+        GET_PRICE({commit},data) {
+            console.log('111')
             return axios({
-                method: "GET",
-                url: `http://localhost:8000/avito/calculate/`
+                method: "POST",
+                url: `https://api-creatum.bexram.online/avito/calculate/`,
+                data: data
             })
                 .then((response) => {
-                    commit("SET_CATEGORY", response.data);
+                    commit("SET_PRICE", response.data);
                     return response;
                 })
                 .catch((error) => {
@@ -52,10 +58,9 @@ export default {
     mutations: {
         SET_CATEGORY: (state, content) => {
             state.categories=content
-            // state.categories=[]
-            // for (let i in content) {
-            //     state.categories.push(content[i].name)
-            // }
+        },
+        SET_PRICE: (state, content) => {
+            state.price=content
         },
 
     }

@@ -16,7 +16,7 @@
                     >
                     </vue-single-select>
                 </div>
-                <div class="input-group" v-if="selected_category">
+                <div class="input-group" v-if="SUBCATEGORIES">
                     <h2 class="form-text">Категория</h2>
                     <vue-single-select
                             name="foo"
@@ -32,7 +32,7 @@
                     <h2 class="form-text">Фамилия, имя и отчество</h2>
                     <input class="input">
                 </div>
-                <div class="contact flex-row">
+                <div class="contact flex-row bottom">
                     <div class="container input-group">
                         <h2 class="form-text">Телефон</h2>
                         <input class="input">
@@ -45,7 +45,9 @@
 
             </div>
             <div class="container price flex-col">
-                <span class="form-text description mob container-col">Выберите услуги, чтобы узнать цену страховки.</span>
+                <span v-if="!PRICE" class="form-text description mob container-col">Выберите услуги, чтобы узнать цену страховки.</span>
+                <span v-if="PRICE" class="form-text amount mob container-col">{{PRICE/100}} ₽ за месяц</span>
+                <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до 100 000 ₽.</span>
                 <button class="pay container-col">Оплатить</button>
                 <span class="form-text grey mob container-col">Продолжая, я соглашаюсь на обработку персональных данных страховым акционерным обществом «ВСК».</span>
             </div>
@@ -71,7 +73,10 @@
         },
 
         computed: {
-            ...mapGetters({CATEGORY: 'backend/CATEGORY'})
+            ...mapGetters({
+                CATEGORY: 'backend/CATEGORY',
+                PRICE: 'backend/PRICE',
+            })
         },
         mounted() {
             this.GET_CATEGORY()
@@ -79,23 +84,31 @@
         methods: {
             ...mapActions({
                 GET_CATEGORY: 'backend/GET_CATEGORY',
+                GET_PRICE: 'backend/GET_PRICE',
 
             }),
 
             onChangeSelectedCategory(input) {
-                if (input) {
+                if (input && input !== '') {
+                    this.SUBCATEGORIES = null
                     this.selected_category = input.name
                     for (let i in this.CATEGORY) {
                         if (this.CATEGORY[i].name === this.selected_category) {
                             this.SUBCATEGORIES = this.CATEGORY[i].subcategory
-                            console.log(this.SUBCATEGORIES)
+                            if (this.SUBCATEGORIES.length === 0) {
+                                this.SUBCATEGORIES=null
+                                this.GET_PRICE({'cat':this.selected_category})
+                            }
                         }
                     }
+                } else {
+                    this.SUBCATEGORIES = null
                 }
             },
             onChangeSelectedSubCategory(input) {
                 if (input) {
                     this.selected_subcategory = input.name
+                    this.GET_PRICE({'subcat':this.selected_subcategory})
                 }
             }
         }
@@ -116,6 +129,12 @@
         color: #FFFFFF;
         min-height: 3rem;
         margin-bottom: 1rem;
+    }
+    .amount {
+        font-weight: 700;
+        font-size: 2.2rem;
+        line-height: 2.3rem;
+        margin-bottom: 1rem
     }
 
     .flex-col {
@@ -144,7 +163,9 @@
     .contact {
         max-width: 580px;
     }
-
+    .bottom {
+        margin-bottom: -1rem;
+    }
     .flex-row {
         display: flex;
         flex-direction: row;
@@ -162,15 +183,15 @@
     }
 
     .price {
+        display: flex;
+        flex-direction: column;
         padding-top: 2rem;
         margin-left: 20px;
         align-items: unsafe center;
         width: 43%;
-        height: 15.2rem;
         box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.02), 0px 4px 24px rgba(0, 0, 0, 0.07);
         border-radius: 12px;
-        box-sizing: border-box;
-
+        padding-bottom: 2rem;
     }
 
 
