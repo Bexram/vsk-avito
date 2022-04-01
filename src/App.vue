@@ -96,7 +96,8 @@
         border-radius: 6px !important;
         height: 2rem !important;
         width: 100% !important;
-        border-width: 0px !important;
+        border-width: 2px !important;
+        border-color: #F2F1F0 !important;
         max-width: 580px !important;
     }
     .glyphicon {
@@ -108,7 +109,7 @@
 
     }
     .required {
-        border-color: red;
+        border: 1px solid #FF4053 !important;
     }
 
 

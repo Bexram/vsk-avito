@@ -37,7 +37,6 @@ export default {
         },
 
         GET_PRICE({commit},data) {
-            console.log('111')
             return axios({
                 method: "POST",
                 url: `https://api-creatum.bexram.online/avito/calculate/`,
@@ -51,6 +50,9 @@ export default {
                     return error;
                 });
         },
+        NULL_PRICE({commit}) {
+            commit("SET_NULL_PRICE")
+        }
 
     },
 
@@ -62,6 +64,9 @@ export default {
         SET_PRICE: (state, content) => {
             state.price=content
         },
+        SET_NULL_PRICE: (state) => {
+            state.price = null
+        }
 
     }
 

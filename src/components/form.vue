@@ -8,13 +8,15 @@
                 <div class="input-group">
                     <h2 class="form-text">Услуги</h2>
                     <vue-single-select
-                            name="foo"
+                            name="category"
                             :options="CATEGORY"
                             option-label="name"
                             placeholder="Выберите услугу"
                             @input="onChangeSelectedCategory($event)"
+                            :required=required_category
                     >
                     </vue-single-select>
+                    <span v-if="required_category"  class="form-text error">Укажите услугу</span>
                 </div>
                 <div class="input-group" v-if="SUBCATEGORIES">
                     <h2 class="form-text">Категория</h2>
@@ -24,9 +26,10 @@
                             option-label="name"
                             placeholder="Выберите категорию"
                             @input="onChangeSelectedSubCategory($event)"
-
+                            :required=required_subcategory
                     >
                     </vue-single-select>
+                    <span v-if="required_subcategory"  class="form-text error">Укажите категорию</span>
                 </div>
                 <div class="input-group">
                     <h2 class="form-text">Фамилия, имя и отчество</h2>
@@ -46,9 +49,12 @@
             </div>
             <div class="container price flex-col">
                 <span v-if="!PRICE" class="form-text description mob container-col">Выберите услуги, чтобы узнать цену страховки.</span>
-                <span v-if="PRICE" class="form-text amount mob container-col">{{PRICE/100}} ₽ за месяц</span>
+                <div class="container-col priceflex-row">
+                <span v-if="PRICE" class="form-text amount cost">Стоимость страховки</span>
+<!--                <div class="line"></div>-->
+                <span v-if="PRICE" class="form-text amount">{{PRICE/100}} ₽ за месяц</span></div>
                 <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до 100 000 ₽.</span>
-                <button class="pay container-col">Оплатить</button>
+                <button class="pay container-col" v-on:click="buyPolicy">Оплатить</button>
                 <span class="form-text grey mob container-col">Продолжая, я соглашаюсь на обработку персональных данных страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
@@ -69,6 +75,8 @@
                 selected_category: null,
                 selected_subcategory: null,
                 SUBCATEGORIES: null,
+                required_category:false,
+                required_subcategory:false,
             }
         },
 
@@ -85,30 +93,44 @@
             ...mapActions({
                 GET_CATEGORY: 'backend/GET_CATEGORY',
                 GET_PRICE: 'backend/GET_PRICE',
-
+                NULL_PRICE: 'backend/NULL_PRICE',
             }),
-
+            buyPolicy() {
+                if (!this.selected_category) {
+                    this.required_category=true
+                }
+                if (!this.selected_subcategory) {
+                    this.required_subcategory=true
+                }
+            },
             onChangeSelectedCategory(input) {
                 if (input && input !== '') {
                     this.SUBCATEGORIES = null
                     this.selected_category = input.name
+                    this.required_category = false
                     for (let i in this.CATEGORY) {
                         if (this.CATEGORY[i].name === this.selected_category) {
                             this.SUBCATEGORIES = this.CATEGORY[i].subcategory
                             if (this.SUBCATEGORIES.length === 0) {
-                                this.SUBCATEGORIES=null
-                                this.GET_PRICE({'cat':this.selected_category})
+                                this.SUBCATEGORIES = null
+                                this.GET_PRICE({'cat': this.selected_category})
                             }
                         }
                     }
                 } else {
+                    this.selected_category = null
                     this.SUBCATEGORIES = null
+                    this.NULL_PRICE()
                 }
             },
             onChangeSelectedSubCategory(input) {
-                if (input) {
+                if (input && input !== '') {
                     this.selected_subcategory = input.name
-                    this.GET_PRICE({'subcat':this.selected_subcategory})
+                    this.required_subcategory = false
+                    this.GET_PRICE({'subcat': this.selected_subcategory})
+                } else {
+                    this.selected_subcategory = null
+                    this.NULL_PRICE()
                 }
             }
         }
@@ -130,6 +152,11 @@
         min-height: 3rem;
         margin-bottom: 1rem;
     }
+    .line {
+        border-bottom: 1px dashed #000; /* Параметры линии */
+        height: 18px; /* Высота блока */
+        width: 20%;
+    }
     .amount {
         font-weight: 700;
         font-size: 2.2rem;
@@ -137,6 +164,14 @@
         margin-bottom: 1rem
     }
 
+    .cost {
+        display: none;
+    }
+    .error{
+        font-size: 0.9rem;
+        line-height: 1rem;
+        color: #FF4053;
+    }
     .flex-col {
         display: flex;
         flex-direction: column;
@@ -163,9 +198,11 @@
     .contact {
         max-width: 580px;
     }
+
     .bottom {
         margin-bottom: -1rem;
     }
+
     .flex-row {
         display: flex;
         flex-direction: row;
@@ -215,14 +252,30 @@
         border-width: 0px;
         max-width: 580px;
     }
+    .priceflex-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
 
     @media screen and (max-width: 650px) {
         h1 {
             font-size: 2.2rem;
         }
 
+        .cost {
+            display: block;
+        }
+
         .description {
             font-size: 1.1rem;
+        }
+
+        .amount {
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 1rem;
         }
 
         .price {
@@ -254,6 +307,7 @@
             font-weight: 400;
             line-height: 1.4rem;
         }
+
     }
 
 </style>
