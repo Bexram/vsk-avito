@@ -5,7 +5,7 @@
             до 100 000 ₽ компенсации от Страхового дома ВСК.</span>
         <div class="flex-row form-all">
             <div class="form-group container flex-col">
-                <div class="input-group">
+                <div class="input-group desktop">
                     <h2 class="form-text">Услуги</h2>
                     <vue-single-select
                             name="category"
@@ -18,7 +18,16 @@
                     </vue-single-select>
                     <span v-if="required_category"  class="form-text error">Укажите услугу</span>
                 </div>
-                <div class="input-group" v-if="SUBCATEGORIES">
+
+
+                <div class="input-group mobile">
+                    <h2 class="form-text">Услуги</h2>
+                    <input class="input" v-on:click="wantSelectCategory">
+                    <span v-if="required_category"  class="form-text error">Укажите услугу</span>
+                </div>
+
+
+                <div class="input-group desktop" v-if="SUBCATEGORIES">
                     <h2 class="form-text">Категория</h2>
                     <vue-single-select
                             name="foo"
@@ -31,6 +40,15 @@
                     </vue-single-select>
                     <span v-if="required_subcategory"  class="form-text error">Укажите категорию</span>
                 </div>
+
+
+                <div class="input-group mobile">
+                    <h2 class="form-text">Категория</h2>
+                    <input class="input">
+                    <span v-if="required_subcategory"  class="form-text error">Укажите категорию</span>
+                </div>
+
+
                 <div class="input-group">
                     <h2 class="form-text">Фамилия, имя и отчество</h2>
                     <input class="input">
@@ -50,7 +68,7 @@
             <div class="container price flex-col">
                 <span v-if="!PRICE" class="form-text description mob container-col">Выберите услуги, чтобы узнать цену страховки.</span>
                 <div class="container-col priceflex-row">
-                <span v-if="PRICE" class="form-text amount cost">Стоимость страховки</span>
+                <span v-if="PRICE" class="form-text amount mobile">Стоимость страховки</span>
 <!--                <div class="line"></div>-->
                 <span v-if="PRICE" class="form-text amount">{{PRICE/100}} ₽ за месяц</span></div>
                 <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до 100 000 ₽.</span>
@@ -58,16 +76,20 @@
                 <span class="form-text grey mob container-col">Продолжая, я соглашаюсь на обработку персональных данных страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
+        <bottom-shit v-if="want_select_category"></bottom-shit>
+        <bottom-shit v-if="want_select_subcategory"></bottom-shit>
     </div>
 </template>
 
 <script>
     import {mapActions, mapGetters} from "vuex";
     import VueSingleSelect from "vue-single-select";
+    import BottomShit from "@/components/bottomshit";
 
     export default {
         name: "form-app",
         components: {
+            BottomShit,
             VueSingleSelect
         },
         data() {
@@ -77,6 +99,8 @@
                 SUBCATEGORIES: null,
                 required_category:false,
                 required_subcategory:false,
+                want_select_category: null,
+                want_select_subcategory: null,
             }
         },
 
@@ -132,6 +156,9 @@
                     this.selected_subcategory = null
                     this.NULL_PRICE()
                 }
+            },
+            wantSelectCategory() {
+              this.want_select_category=true
             }
         }
     }
@@ -164,9 +191,7 @@
         margin-bottom: 1rem
     }
 
-    .cost {
-        display: none;
-    }
+
     .error{
         font-size: 0.9rem;
         line-height: 1rem;
@@ -258,13 +283,15 @@
         justify-content: space-between;
 
     }
+    .mobile {
+        display: none;
+    }
 
     @media screen and (max-width: 650px) {
         h1 {
             font-size: 2.2rem;
         }
-
-        .cost {
+        .mobile {
             display: block;
         }
 
@@ -306,6 +333,9 @@
             font-size: 0.8rem;
             font-weight: 400;
             line-height: 1.4rem;
+        }
+        .desktop {
+            display: none;
         }
 
     }
