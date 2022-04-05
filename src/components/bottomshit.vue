@@ -3,15 +3,20 @@
         <div class="bottomsheet">
             <div class="bottomsheet-header">
                 <div class="flex-row controls">
-                    <div class="controls-container"><img class="back" :src="require('/src/assets/arrow-back.svg')">
+                    <div class="controls-container"><img class="back" :src="require('/src/assets/arrow-back.svg')" v-on:click="hide">
                     </div>
-                    <div class="controls-container center"><h2 class="form-text control-text">Услуги</h2></div>
-                    <div class="controls-container right"><span class="form-text grey control-text">Отмена</span></div>
+                    <div class="controls-container center"><h2 class="form-text control-text">{{name}}</h2></div>
+                    <div class="controls-container right" v-on:click="hide"><span class="form-text grey control-text">Отмена</span></div>
                 </div>
                 <input class="search input" placeholder="Поиск">
             </div>
             <div class="bottomsheet-body">
-
+               <div class="form-text body-item"
+                    v-for="{id, name} in content"
+                    :key="id"
+                    v-on:click="selectOption(name)">
+                   {{name}}
+               </div>
             </div>
         </div>
     </div>
@@ -19,9 +24,18 @@
 
 <script>
     export default {
-        name: "bottom-shit",
+        name: "bottom-sheet",
         props: {
-            content: []
+            content: [],
+            name: null
+        },
+        methods: {
+            hide() {
+                this.$emit("hide", true)
+            },
+            selectOption(option) {
+                this.$emit("option", option)
+            },
         }
     }
 </script>
@@ -46,8 +60,9 @@
 
     .bottomsheet-body {
         width: 100%;
-        height: 100%;
+        height: 80%;
         background: white;
+        overflow-y: scroll;
     }
 
     .bottomsheet-background {
@@ -59,7 +74,10 @@
         background: rgba(0, 0, 0, 0.25);
         z-index: 100;
     }
-
+    .body-item {
+        margin: 1rem 1.5rem;
+        font-size: 1rem;
+    }
     .flex-row {
         display: flex;
         flex-direction: row;

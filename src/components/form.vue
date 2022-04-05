@@ -16,14 +16,14 @@
                             :required=required_category
                     >
                     </vue-single-select>
-                    <span v-if="required_category"  class="form-text error">Укажите услугу</span>
+                    <span v-if="required_category" class="form-text error">Укажите услугу</span>
                 </div>
 
 
                 <div class="input-group mobile">
                     <h2 class="form-text">Услуги</h2>
-                    <input class="input" v-on:click="wantSelectCategory">
-                    <span v-if="required_category"  class="form-text error">Укажите услугу</span>
+                    <input class="font-text input" v-model="selected_category" v-on:click="wantSelectCategory">
+                    <span v-if="required_category" class="form-text error">Укажите услугу</span>
                 </div>
 
 
@@ -38,14 +38,14 @@
                             :required=required_subcategory
                     >
                     </vue-single-select>
-                    <span v-if="required_subcategory"  class="form-text error">Укажите категорию</span>
+                    <span v-if="required_subcategory" class="form-text error">Укажите категорию</span>
                 </div>
 
 
                 <div class="input-group mobile">
                     <h2 class="form-text">Категория</h2>
-                    <input class="input">
-                    <span v-if="required_subcategory"  class="form-text error">Укажите категорию</span>
+                    <input class="input" v-model="selected_subcategory" v-on:click="wantSelectSubCategory">
+                    <span v-if="required_subcategory" class="form-text error">Укажите категорию</span>
                 </div>
 
 
@@ -68,16 +68,27 @@
             <div class="container price flex-col">
                 <span v-if="!PRICE" class="form-text description mob container-col">Выберите услуги, чтобы узнать цену страховки.</span>
                 <div class="container-col priceflex-row">
-                <span v-if="PRICE" class="form-text amount mobile">Стоимость страховки</span>
-<!--                <div class="line"></div>-->
-                <span v-if="PRICE" class="form-text amount">{{PRICE/100}} ₽ за месяц</span></div>
+                    <span v-if="PRICE" class="form-text amount mobile">Стоимость страховки</span>
+                    <!--                <div class="line"></div>-->
+                    <span v-if="PRICE" class="form-text amount">{{PRICE/100}} ₽ за месяц</span></div>
                 <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до 100 000 ₽.</span>
                 <button class="pay container-col" v-on:click="buyPolicy">Оплатить</button>
                 <span class="form-text grey mob container-col">Продолжая, я соглашаюсь на обработку персональных данных страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
-        <bottom-shit v-if="want_select_category"></bottom-shit>
-        <bottom-shit v-if="want_select_subcategory"></bottom-shit>
+        <bottom-shit v-if="want_select_category"
+                     name="Услуги"
+                     :content=CATEGORY
+                     @hide="hideCategoryBottomsheet($event)"
+                     @option="onChangeSelectedCategory($event)"
+        ></bottom-shit>
+        <bottom-shit
+                v-if="want_select_subcategory"
+                name="Категории"
+                :content=SUBCATEGORIES
+                @hide="hideSubCategoryBottomsheet($event)"
+                @option="onChangeSelectedSubCategory($event)"
+        ></bottom-shit>
     </div>
 </template>
 
@@ -97,8 +108,8 @@
                 selected_category: null,
                 selected_subcategory: null,
                 SUBCATEGORIES: null,
-                required_category:false,
-                required_subcategory:false,
+                required_category: false,
+                required_subcategory: false,
                 want_select_category: null,
                 want_select_subcategory: null,
             }
@@ -121,16 +132,21 @@
             }),
             buyPolicy() {
                 if (!this.selected_category) {
-                    this.required_category=true
+                    this.required_category = true
                 }
                 if (!this.selected_subcategory) {
-                    this.required_subcategory=true
+                    this.required_subcategory = true
                 }
             },
             onChangeSelectedCategory(input) {
+                this.want_select_category = false
                 if (input && input !== '') {
                     this.SUBCATEGORIES = null
-                    this.selected_category = input.name
+                    if (input.name) {
+                        this.selected_category = input.name
+                    } else {
+                        this.selected_category=input
+                    }
                     this.required_category = false
                     for (let i in this.CATEGORY) {
                         if (this.CATEGORY[i].name === this.selected_category) {
@@ -148,8 +164,13 @@
                 }
             },
             onChangeSelectedSubCategory(input) {
+                this.want_select_subcategory = false
                 if (input && input !== '') {
-                    this.selected_subcategory = input.name
+                    if (input.name) {
+                        this.selected_subcategory = input.name
+                    } else {
+                        this.selected_subcategory=input
+                    }
                     this.required_subcategory = false
                     this.GET_PRICE({'subcat': this.selected_subcategory})
                 } else {
@@ -158,9 +179,19 @@
                 }
             },
             wantSelectCategory() {
-              this.want_select_category=true
+                this.want_select_category = true
+            },
+            hideCategoryBottomsheet() {
+                this.want_select_category = false
+            },
+            wantSelectSubCategory() {
+                this.want_select_subcategory = true
+            },
+            hideSubCategoryBottomsheet() {
+                this.want_select_subcategory = false
             }
-        }
+        },
+
     }
 </script>
 
@@ -179,11 +210,13 @@
         min-height: 3rem;
         margin-bottom: 1rem;
     }
+
     .line {
         border-bottom: 1px dashed #000; /* Параметры линии */
         height: 18px; /* Высота блока */
         width: 20%;
     }
+
     .amount {
         font-weight: 700;
         font-size: 2.2rem;
@@ -192,11 +225,12 @@
     }
 
 
-    .error{
+    .error {
         font-size: 0.9rem;
         line-height: 1rem;
         color: #FF4053;
     }
+
     .flex-col {
         display: flex;
         flex-direction: column;
@@ -277,12 +311,14 @@
         border-width: 0px;
         max-width: 580px;
     }
+
     .priceflex-row {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
 
     }
+
     .mobile {
         display: none;
     }
@@ -291,6 +327,7 @@
         h1 {
             font-size: 2.2rem;
         }
+
         .mobile {
             display: block;
         }
@@ -334,6 +371,7 @@
             font-weight: 400;
             line-height: 1.4rem;
         }
+
         .desktop {
             display: none;
         }
