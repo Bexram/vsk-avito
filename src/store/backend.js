@@ -52,6 +52,21 @@ export default {
         },
         NULL_PRICE({commit}) {
             commit("SET_NULL_PRICE")
+        },
+        BUY_POLICY({commit},req) {
+            console.log(req)
+            return axios({
+                method: "POST",
+                url: `https://api-creatum.bexram.online/avito/buy/`,
+                data: req
+            })
+                .then((response) => {
+                    commit('SET_NULL_PRICE')
+                    return response;
+                })
+                .catch((error) => {
+                    return error;
+                });
         }
 
     },

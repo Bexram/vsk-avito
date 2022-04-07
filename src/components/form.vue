@@ -2,7 +2,7 @@
     <div class="body-wrapper">
         <h1 class="form-text">Оформите страховку на свои услуги</h1>
         <span class="form-text description">С ней легче привлечь клиентов. Если что-то сломается или испортится, заказчики могут получить
-            до 100 000 ₽ компенсации от Страхового дома ВСК.</span>
+            до&nbsp;100&nbsp;000 ₽ компенсации от Страхового дома ВСК.</span>
         <div class="flex-row form-all">
             <div class="form-group container flex-col">
                 <div class="input-group desktop">
@@ -56,12 +56,24 @@
                 <div class="contact flex-row bottom">
                     <div class="container input-group">
                         <h2 class="form-text">Телефон</h2>
-                        <input class="input">
+                        <input class="input"
+                               v-bind:class="{required:required_phone}"
+                               type="tel"
+                               placeholder="+7 ___ ___-__-__"
+                               v-model="phone"
+                               v-mask="'+7 ### ###-##-##'"
+                        >
                     </div>
                     <div class="container input-group">
                         <h2 class="form-text">Почта</h2>
-                        <input class="input">
+                        <input class="input"
+                               v-bind:class="{required:required_email}"
+                               type="email"
+                               v-model="email"
+                               v-on:change="isEmailValid">
+                        <span v-if="required_subcategory" class="form-text error">Проверьте адрес почты: он должен быть в формате ivanov@avito.ru </span>
                     </div>
+
                 </div>
 
             </div>
@@ -71,24 +83,28 @@
                     <span v-if="PRICE" class="form-text amount mobile">Стоимость страховки</span>
                     <!--                <div class="line"></div>-->
                     <span v-if="PRICE" class="form-text amount">{{PRICE/100}} ₽ за месяц</span></div>
-                <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до 100 000 ₽.</span>
+                <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до&nbsp;100&nbsp;000 ₽.</span>
                 <button class="pay container-col" v-on:click="buyPolicy">Оплатить</button>
                 <span class="form-text grey mob container-col">Продолжая, я соглашаюсь на обработку персональных данных страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
-        <bottom-shit v-if="want_select_category"
-                     name="Услуги"
-                     :content=CATEGORY
-                     @hide="hideCategoryBottomsheet($event)"
-                     @option="onChangeSelectedCategory($event)"
-        ></bottom-shit>
-        <bottom-shit
-                v-if="want_select_subcategory"
-                name="Категории"
-                :content=SUBCATEGORIES
-                @hide="hideSubCategoryBottomsheet($event)"
-                @option="onChangeSelectedSubCategory($event)"
-        ></bottom-shit>
+        <transition appear name="fade">
+            <bottom-shit v-if="want_select_category"
+                         name="Услуги"
+                         :content=CATEGORY
+                         @hide="hideCategoryBottomsheet($event)"
+                         @option="onChangeSelectedCategory($event)"
+            ></bottom-shit>
+        </transition>
+        <transition appear name="fade">
+            <bottom-shit
+                    v-if="want_select_subcategory"
+                    name="Категории"
+                    :content=SUBCATEGORIES
+                    @hide="hideSubCategoryBottomsheet($event)"
+                    @option="onChangeSelectedSubCategory($event)"
+            ></bottom-shit>
+        </transition>
     </div>
 </template>
 
@@ -96,6 +112,7 @@
     import {mapActions, mapGetters} from "vuex";
     import VueSingleSelect from "vue-single-select";
     import BottomShit from "@/components/bottomshit";
+    import {mask} from 'vue-the-mask'
 
     export default {
         name: "form-app",
@@ -112,9 +129,15 @@
                 required_subcategory: false,
                 want_select_category: null,
                 want_select_subcategory: null,
+                phone: null,
+                required_phone: false,
+                email: null,
+                required_email: false,
+                // eslint-disable-next-line
+                reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
         },
-
+        directives: {mask},
         computed: {
             ...mapGetters({
                 CATEGORY: 'backend/CATEGORY',
@@ -128,14 +151,36 @@
             ...mapActions({
                 GET_CATEGORY: 'backend/GET_CATEGORY',
                 GET_PRICE: 'backend/GET_PRICE',
+                BUY_POLICY: 'backend/BUY_POLICY',
                 NULL_PRICE: 'backend/NULL_PRICE',
             }),
             buyPolicy() {
+
+                if (!this.phone || this.modifyPhone(this.phone).length !== 11) {
+                    this.required_phone = true
+                }
                 if (!this.selected_category) {
                     this.required_category = true
                 }
                 if (!this.selected_subcategory) {
                     this.required_subcategory = true
+                }
+                if (!this.email) {
+                    this.required_email = true
+                }
+                if (!this.required_category && !this.required_subcategory && !this.required_phone && !this.required_email) {
+                    const url = new URL(window.location)
+                    let req = {
+                        'category': this.selected_category,
+                        'subcategory': this.selected_subcategory,
+                        'phone': this.modifyPhone(this.phone),
+                        'email': this.email,
+                        'avitoid': url.searchParams.get('id'),
+                        'date_avitoid': url.searchParams.get('date')
+                    }
+                    this.BUY_POLICY(req).then((response) => {
+                        window.open(response.data)
+                    })
                 }
             },
             onChangeSelectedCategory(input) {
@@ -145,7 +190,7 @@
                     if (input.name) {
                         this.selected_category = input.name
                     } else {
-                        this.selected_category=input
+                        this.selected_category = input
                     }
                     this.required_category = false
                     for (let i in this.CATEGORY) {
@@ -169,7 +214,7 @@
                     if (input.name) {
                         this.selected_subcategory = input.name
                     } else {
-                        this.selected_subcategory=input
+                        this.selected_subcategory = input
                     }
                     this.required_subcategory = false
                     this.GET_PRICE({'subcat': this.selected_subcategory})
@@ -189,6 +234,13 @@
             },
             hideSubCategoryBottomsheet() {
                 this.want_select_subcategory = false
+            },
+            modifyPhone(phone) {
+                phone = phone.replace(/[^0-9]/g, "")
+                return phone
+            },
+            isEmailValid: function () {
+                return (this.email === "") ? "" : (this.reg.test(this.email)) ? this.required_email = false : this.required_email = true;
             }
         },
 
@@ -196,6 +248,24 @@
 </script>
 
 <style scoped>
+    .fade-enter-active {
+        transition: all .3s ease-out;
+    }
+
+    .fade-leave-active {
+        transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+
+    .fade-enter-from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    .fade-leave-to {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
     .pay {
         margin-top: 1rem;
         height: 3rem;
@@ -310,6 +380,7 @@
         width: 100%;
         border-width: 0px;
         max-width: 580px;
+        outline: none;
     }
 
     .priceflex-row {
