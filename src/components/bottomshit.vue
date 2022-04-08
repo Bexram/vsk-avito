@@ -3,20 +3,22 @@
         <div class="bottomsheet">
             <div class="bottomsheet-header">
                 <div class="flex-row controls">
-                    <div class="controls-container"><img class="back" :src="require('/src/assets/arrow-back.svg')" v-on:click="hide">
+                    <div class="controls-container"><img class="back" :src="require('/src/assets/arrow-back.svg')"
+                                                         v-on:click="hide">
                     </div>
                     <div class="controls-container center"><h2 class="form-text control-text">{{name}}</h2></div>
-                    <div class="controls-container right" v-on:click="hide"><span class="form-text grey control-text">Отмена</span></div>
+                    <div class="controls-container right" v-on:click="hide"><span class="form-text grey control-text">Отмена</span>
+                    </div>
                 </div>
-                <input class="search input" placeholder="Поиск">
+                <input class="search input" placeholder="Поиск" v-model="searchString" v-on:input="search">
             </div>
             <div class="bottomsheet-body">
-               <div class="form-text body-item"
-                    v-for="{id, name} in content"
-                    :key="id"
-                    v-on:click="selectOption(name)">
-                   {{name}}
-               </div>
+                <div class="form-text body-item"
+                     v-for="{id, name} in all_data"
+                     :key="id"
+                     v-on:click="selectOption(name)">
+                    {{name}}
+                </div>
             </div>
         </div>
     </div>
@@ -29,6 +31,15 @@
             content: [],
             name: null
         },
+        data() {
+            return {
+                all_data: null,
+                searchString: null,
+            }
+        },
+        mounted() {
+            this.all_data = this.content
+        },
         methods: {
             hide() {
                 this.$emit("hide", true)
@@ -36,6 +47,11 @@
             selectOption(option) {
                 this.$emit("option", option)
             },
+            search() {
+                this.all_data = this.content.filter(item => {
+                    return item.name.includes(this.searchString);
+                });
+            }
         }
     }
 </script>
@@ -74,10 +90,12 @@
         background: rgba(0, 0, 0, 0.25);
         z-index: 100;
     }
+
     .body-item {
         margin: 1rem 1.5rem;
         font-size: 1rem;
     }
+
     .flex-row {
         display: flex;
         flex-direction: row;

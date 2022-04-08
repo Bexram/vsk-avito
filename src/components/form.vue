@@ -5,6 +5,18 @@
             до&nbsp;100&nbsp;000 ₽ компенсации от Страхового дома ВСК.</span>
         <div class="flex-row form-all">
             <div class="form-group container flex-col">
+                <div class="avito">
+                    <div class="flex-col avito-titles">
+                        <h2 class="form-text">ID Страхователя</h2>
+                        <h2 class="form-text">Дата регистрации на Авито</h2>
+                    </div>
+                    <div class="flex-col avito-col">
+                        <div class="avito_data"><span class="form-text">{{avitoid}}</span></div>
+                        <div class="avito_data"><span class="form-text">{{format_date(date_avitoid)}}</span></div>
+
+                    </div>
+                </div>
+
                 <div class="input-group desktop">
                     <h2 class="form-text">Услуги</h2>
                     <vue-single-select
@@ -48,11 +60,6 @@
                     <span v-if="required_subcategory" class="form-text error">Укажите категорию</span>
                 </div>
 
-
-                <div class="input-group">
-                    <h2 class="form-text">Фамилия, имя и отчество</h2>
-                    <input class="input">
-                </div>
                 <div class="contact flex-row bottom">
                     <div class="container input-group">
                         <h2 class="form-text">Телефон</h2>
@@ -109,6 +116,7 @@
 </template>
 
 <script>
+    import moment from 'moment'
     import {mapActions, mapGetters} from "vuex";
     import VueSingleSelect from "vue-single-select";
     import BottomShit from "@/components/bottomshit";
@@ -133,6 +141,8 @@
                 required_phone: false,
                 email: null,
                 required_email: false,
+                avitoid: 8888888888,
+                date_avitoid: "2022-12-01",
                 // eslint-disable-next-line
                 reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
             }
@@ -146,6 +156,9 @@
         },
         mounted() {
             this.GET_CATEGORY()
+            const url = new URL(window.location)
+            this.avitoid = url.searchParams.get('id')
+            this.date_avitoid = url.searchParams.get('date')
         },
         methods: {
             ...mapActions({
@@ -154,6 +167,11 @@
                 BUY_POLICY: 'backend/BUY_POLICY',
                 NULL_PRICE: 'backend/NULL_PRICE',
             }),
+            format_date(value){
+                if (value) {
+                    return moment(String(value)).format('DD.MM.YYYY')
+                }
+            },
             buyPolicy() {
 
                 if (!this.phone || this.modifyPhone(this.phone).length !== 11) {
@@ -169,14 +187,13 @@
                     this.required_email = true
                 }
                 if (!this.required_category && !this.required_subcategory && !this.required_phone && !this.required_email) {
-                    const url = new URL(window.location)
                     let req = {
                         'category': this.selected_category,
                         'subcategory': this.selected_subcategory,
                         'phone': this.modifyPhone(this.phone),
                         'email': this.email,
-                        'avitoid': url.searchParams.get('id'),
-                        'date_avitoid': url.searchParams.get('date')
+                        'avitoid': this.avitoid,
+                        'date_avitoid': this.date_avitoid
                     }
                     this.BUY_POLICY(req).then((response) => {
                         window.open(response.data)
@@ -264,6 +281,28 @@
     .fade-leave-to {
         transform: translateY(20px);
         opacity: 0;
+    }
+
+    .avito {
+        display: flex;
+        flex-direction: row;
+        margin-left: 0 !important;
+    }
+
+    .avito_data {
+        height: 50%;
+        display: flex;
+        align-items: center;
+        font-size: 0.8rem;
+    }
+
+    .avito-titles {
+        justify-content: space-between;
+    }
+
+    .avito-col {
+        margin-left: 2rem;
+        justify-content: space-between;
     }
 
     .pay {
