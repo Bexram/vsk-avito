@@ -68,7 +68,7 @@
                 </template>
                 <template #content>
                     <span class="form-text description">
-                    Если заказчику был причинён вред, в течение 5 календарных дней он может обратиться в страховую на avito_insurance@vsk.ru</span><br>
+                    Если заказчику был причинён вред, в течение 5 календарных дней он может обратиться в страховую на <a class="form-text" href="mailto:avito_insurance@vsk.ru">avito_insurance@vsk.ru</a></span><br>
                     <br>
                     <span class="form-text description">Понадобятся документы и доказательства:</span>
                     <ul class="form-text description">
@@ -123,6 +123,9 @@
     }
     li:before {
         content: "— "; /* Добавляем в качестве маркера символ */
+    }
+    a {
+        color: black;
     }
 
 

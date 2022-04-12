@@ -18,46 +18,46 @@
                 </div>
 
                 <div class="input-group desktop">
-                    <h2 class="form-text">Услуги</h2>
+                    <h2 class="form-text">Категория</h2>
                     <vue-single-select
                             name="category"
                             :options="CATEGORY"
                             option-label="name"
-                            placeholder="Выберите услугу"
+                            placeholder="Выберите категорию"
                             @input="onChangeSelectedCategory($event)"
                             :required=required_category
                     >
                     </vue-single-select>
-                    <span v-if="required_category" class="form-text error">Укажите услугу</span>
+                    <span v-if="required_category" class="form-text error">Укажите категорию</span>
                 </div>
 
 
                 <div class="input-group mobile">
                     <h2 class="form-text">Услуги</h2>
                     <input readonly class="font-text input" v-model="selected_category" v-on:click="wantSelectCategory">
-                    <span v-if="required_category" class="form-text error">Укажите услугу</span>
+                    <span v-if="required_category" class="form-text error">Укажите категорию</span>
                 </div>
 
 
                 <div class="input-group desktop" v-if="SUBCATEGORIES">
-                    <h2 class="form-text">Категория</h2>
+                    <h2 class="form-text">Подкатегория</h2>
                     <vue-single-select
                             name="foo"
                             :options="SUBCATEGORIES"
                             option-label="name"
-                            placeholder="Выберите категорию"
+                            placeholder="Выберите подкатегорию"
                             @input="onChangeSelectedSubCategory($event)"
                             :required=required_subcategory
                     >
                     </vue-single-select>
-                    <span v-if="required_subcategory" class="form-text error">Укажите категорию</span>
+                    <span v-if="required_subcategory" class="form-text error">Укажите подкатегорию</span>
                 </div>
 
 
                 <div class="input-group mobile" v-if="selected_category">
                     <h2 class="form-text">Категория</h2>
                     <input readonly class="input" v-model="selected_subcategory" v-on:click="wantSelectSubCategory">
-                    <span v-if="required_subcategory" class="form-text error">Укажите категорию</span>
+                    <span v-if="required_subcategory" class="form-text error">Укажите подкатегорию</span>
                 </div>
 
                 <div class="contact flex-row bottom">
@@ -97,7 +97,7 @@
         </div>
         <transition appear name="fade">
             <bottom-shit v-if="want_select_category"
-                         name="Услуги"
+                         name="Категории"
                          :content=CATEGORY
                          @hide="hideCategoryBottomsheet($event)"
                          @option="onChangeSelectedCategory($event)"
@@ -106,7 +106,7 @@
         <transition appear name="fade">
             <bottom-shit
                     v-if="want_select_subcategory"
-                    name="Категории"
+                    name="Подкаатегории"
                     :content=SUBCATEGORIES
                     @hide="hideSubCategoryBottomsheet($event)"
                     @option="onChangeSelectedSubCategory($event)"
