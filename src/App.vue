@@ -27,11 +27,14 @@
 </script>
 
 <style>
+    html {
+        overflow-x: hidden;
+    }
     .body-wrapper {
         width: 71%;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 4rem;
+        margin-top: 3.1rem;
         max-width: 970px;
         height: auto;
     }
@@ -58,7 +61,7 @@
     }
     .grey {
         font-weight: 400;
-        font-size: 0.7rem;
+        font-size: 0.7rem !important;
         line-height: 1rem;
         color: #858585;
     }
@@ -94,7 +97,7 @@
         box-sizing: border-box !important;
         background: #F2F1F0 !important;
         border-radius: 6px !important;
-        height: 2rem !important;
+        height: 2.6rem !important;
         width: 100% !important;
         border-width: 2px !important;
         border-color: #F2F1F0 !important;
@@ -111,6 +114,13 @@
     .required {
         border: 1px solid #FF4053 !important;
     }
+    .vcp__header-title{
+        margin-right: 2px !important;
+    }
+    .vcp__header-icon {
+        width: 20px !important;
+    }
+
 
 
 

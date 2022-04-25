@@ -301,7 +301,7 @@
     }
 
     .avito-col {
-        margin-left: 2rem;
+        margin-left: 3.5rem;
         justify-content: space-between;
     }
 
@@ -348,6 +348,7 @@
     .form-text {
         font-family: 'Arial';
         font-style: normal;
+        font-size: 1rem;
     }
 
     .input-group {
@@ -356,7 +357,7 @@
     }
 
     .form-group {
-        width: 57%;
+        width: 57% !important;
     }
 
     .form-all {
@@ -399,7 +400,9 @@
         padding-bottom: 2rem;
     }
 
-
+    h1 {
+        font-size: 2rem !important;
+    }
     h2 {
         font-weight: 700;
         font-size: 0.8rem;
@@ -415,7 +418,7 @@
         box-sizing: border-box;
         background: #F2F1F0;
         border-radius: 6px;
-        height: 2rem;
+        height: 2.6rem;
         width: 100%;
         border-width: 0px;
         max-width: 580px;
@@ -473,7 +476,7 @@
         }
 
         input {
-            height: 3rem;
+            height: 2.6rem;
         }
 
         .mob {

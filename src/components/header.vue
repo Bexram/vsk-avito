@@ -22,8 +22,9 @@
 
 <style scoped>
     .header-app {
-        width: 100%;
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05), 0px 4px 24px rgba(0, 0, 0, 0.12);
+        margin: -0.5rem -0.5rem;
+        width: 105%;
         height: 5rem;
     }
     .flex-row {

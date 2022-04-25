@@ -41,8 +41,8 @@
     .circle {
         flex-shrink: 0;
         background: #F2F1F0;
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2.6rem;
+        height: 2.6rem;
         border-radius: 50%;
         /* не забываем о кроссбраузерности */
         -moz-border-radius: 50%;
@@ -83,7 +83,7 @@
     .flex-row {
         flex-direction: row;
         display: flex;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
 
     .description {
