@@ -4,27 +4,27 @@
 
         <div class="flex-row">
             <div class="circle"><span class="num">1</span></div>
-            <span class="form-text description">Полис оформит партнёр Авито — компания ВСК. Страховку нужно купить в категории, где у вас есть объявление.</span>
+            <span class="form-text description">Полис оформит партнёр Авито — компания ВСК. Страховку нужно купить в&nbsp;категории, где у&nbsp;вас есть объявление.</span>
         </div>
         <div class="flex-row">
             <div class="circle"><span class="num">2</span></div>
-            <span class="form-text description">После оплаты полис придёт на вашу электронную почту и вы получите значок «Страховка от ущерба». Отметка появится в объявлениях, где действует полис, в течение 1–2 рабочих дней.</span>
+            <span class="form-text description">После оплаты полис придёт на вашу электронную почту и&nbsp;вы получите значок «Страховка от ущерба». Отметка появится в&nbsp;объявлениях, где действует полис, в&nbsp;течение 1–2 рабочих дней.</span>
         </div>
         <div class="flex-row">
             <div class="circle"><span class="num">3</span></div>
-            <span class="form-text description">Пользователи, которые нажмут на значок в объявлении, увидят, в какой категории и до какого числа действительна страховка. Также заказчик может попросить вас показать полис.</span>
+            <span class="form-text description">Пользователи, которые нажмут на значок в объявлении, увидят, в&nbsp;какой категории и&nbsp;до&nbsp;какого числа действительна страховка. Также заказчик может попросить вас показать полис.</span>
         </div>
         <div class="flex-row">
             <div class="circle"><span class="num">4</span></div>
-            <span class="form-text description">Страховка действует 30 дней. Новую можно купить в любой момент: она заработает сразу, как закончится предыдущая.</span>
+            <span class="form-text description">Страховка действует 30 дней. Новую можно купить в&nbsp;любой момент: она заработает сразу, как закончится предыдущая.</span>
         </div>
         <div class="flex-row">
             <div class="circle"><span class="num">5</span></div>
-            <span class="form-text description">Если с заказом возникнет проблема, клиент должен обратиться в поддержку Авито. Вам это делать не нужно.</span>
+            <span class="form-text description">Если с заказом возникнет проблема, клиент должен обратиться в&nbsp;поддержку Авито. Вам это делать не&nbsp;нужно.</span>
         </div>
         <div class="flex-col">
         <button class="pay">Оформить полис</button>
-        <span class="form-text grey">Услугу страхования оказывает страховое акционерное общество «ВСК» (ОГРН 1027700186062, лицензия Банка России СИ № 0621 от 11.09.2015, <a href="https://www.vsk.ru/">https://www.vsk.ru/)</a>. Правила и условия страхования. </span>
+        <span class="form-text grey">Услугу страхования оказывает страховое акционерное общество «ВСК» (ОГРН 1027700186062, лицензия Банка России СИ № 0621 от 11.09.2015, <a href="https://www.vsk.ru/">https://www.vsk.ru/)</a>. Правила и&nbsp;условия страхования. </span>
         </div>
 
 

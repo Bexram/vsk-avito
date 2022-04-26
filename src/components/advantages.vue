@@ -9,14 +9,14 @@
                 </div>
 
                 <h2 class="form-text card-title">Защита от незапланированных трат</h2>
-                <span class="form-text card-description">ВСК изучает претензии заказчиков и при необходимости компенсирует ущерб</span>
+                <span class="form-text card-description">ВСК изучает претензии заказчиков и&nbsp;при необходимости компенсирует ущерб</span>
             </div>
             <div class="card container flex-col">
                 <div class="img-container">
                     <img :src="require('/src/assets/adv2.svg')">
                 </div>
-                <h2 class="form-text card-title">Значок «Страховка от ущерба»</h2>
-                <span class="form-text card-description">Появится в ваших объявлениях</span>
+                <h2 class="form-text card-title">Значок «Страховка от&nbsp;ущерба»</h2>
+                <span class="form-text card-description">Появится в&nbsp;ваших объявлениях</span>
             </div>
             <div class="card container flex-col">
                 <div class="img-container">
@@ -41,7 +41,7 @@
                         </div>
 
                         <h2 class="form-text card-title">Защита от незапланированных трат</h2>
-                        <span class="form-text card-description">ВСК изучает претензии заказчиков и при необходимости компенсирует ущерб</span>
+                        <span class="form-text card-description">ВСК изучает претензии заказчиков и&nbsp;при необходимости компенсирует ущерб</span>
                     </div>
                 </swiper-slide>
                 <swiper-slide>
@@ -49,7 +49,7 @@
                         <div class="img-container">
                             <img :src="require('/src/assets/adv2.svg')">
                         </div>
-                        <h2 class="form-text card-title">Значок «Страховка от ущерба»</h2>
+                        <h2 class="form-text card-title">Значок «Страховка от&nbsp;ущерба»</h2>
                         <span class="form-text card-description">Появится в ваших объявлениях</span>
                     </div>
                 </swiper-slide>
@@ -105,9 +105,11 @@
     }
 
     .img-container {
+        margin-top: 8%;
         align-items: center;
-        margin-bottom: 5%;
-        height: 35%;
+        margin-bottom: 6%;
+        height: 6.6rem;
+        width: 6.6rem;
     }
 
     .flex-row {
@@ -124,22 +126,25 @@
     .card-title {
         font-size: 1rem;
         line-height: 1.5rem;
+        margin: 0;
     }
 
     .card-description {
+        margin-top: 2px;
         font-size: 0.8rem;
-        line-height: 1.7rem;
+        line-height: 1.3rem;
     }
 
     .flex-col {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
     }
 
     img {
-        height: 100%;
+        max-height: 100%;
+        max-width: 100%;
     }
 
     .swipe {

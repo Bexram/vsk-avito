@@ -2,7 +2,7 @@
     <div class="body-wrapper">
         <h1 class="form-text">Оформите страховку на свои услуги</h1>
         <span class="form-text description">С ней легче привлечь клиентов. Если что-то сломается или испортится, заказчики могут получить
-            до&nbsp;100&nbsp;000 ₽ компенсации от Страхового дома ВСК.</span>
+            до&nbsp;100&nbsp;000 ₽ компенсации от&nbsp;Страхового дома ВСК.</span>
         <div class="flex-row form-all">
             <div class="form-group container flex-col">
                 <div class="avito">
@@ -90,9 +90,9 @@
                     <span v-if="PRICE" class="form-text amount mobile">Стоимость страховки</span>
                     <!--                <div class="line"></div>-->
                     <span v-if="PRICE" class="form-text amount">{{PRICE/100}} ₽ за месяц</span></div>
-                <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до&nbsp;100&nbsp;000 ₽.</span>
+                <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до&nbsp;100&nbsp;000&nbsp;₽.</span>
                 <button class="pay container-col" v-on:click="buyPolicy">Оплатить</button>
-                <span class="form-text grey mob container-col">Продолжая, я соглашаюсь на обработку персональных данных страховым акционерным обществом «ВСК».</span>
+                <span class="form-text grey mob container-col">Продолжая, я соглашаюсь <a class="grey" href="vsk.ru">на обработку персональных данных</a> страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
         <transition appear name="fade">
@@ -328,7 +328,7 @@
 
     .amount {
         font-weight: 700;
-        font-size: 2.2rem;
+        font-size: 1.7rem !important;
         line-height: 2.3rem;
         margin-bottom: 1rem
     }
@@ -385,7 +385,7 @@
     }
 
     .container-col {
-        width: 70%;
+        width: 83%;
     }
 
     .price {
@@ -398,6 +398,7 @@
         box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.02), 0px 4px 24px rgba(0, 0, 0, 0.07);
         border-radius: 12px;
         padding-bottom: 2rem;
+        max-height: 16.6rem;
     }
 
     h1 {

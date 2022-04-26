@@ -34,7 +34,7 @@
         width: 71%;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 3.1rem;
+        margin-top: 4.9rem;
         max-width: 970px;
         height: auto;
     }
@@ -61,8 +61,8 @@
     }
     .grey {
         font-weight: 400;
-        font-size: 0.7rem !important;
-        line-height: 1rem;
+        font-size: 0.8rem !important;
+        line-height: 1.1rem;
         color: #858585;
     }
 
@@ -119,6 +119,12 @@
     }
     .vcp__header-icon {
         width: 20px !important;
+    }
+    .vcp__header {
+        padding:0 !important;
+    }
+    .vcp__body-content {
+        padding:0 !important;
     }
 
 
