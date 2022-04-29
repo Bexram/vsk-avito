@@ -55,7 +55,6 @@
         justify-content: center;
     }
     .pay {
-        margin-top: 1rem;
         max-width: 15rem;
         height: 3rem;
         background: #00AAFF;
@@ -94,9 +93,13 @@
     }
     @media screen and (max-width: 650px) {
         .pay {
+            margin-top: 0.2rem;
             width: 100%;
             max-width: 100%;
             }
+        h2 {
+            margin-top: 48px;
+        }
     }
 
 </style>

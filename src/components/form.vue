@@ -438,6 +438,9 @@
     }
 
     @media screen and (max-width: 650px) {
+        .form-all {
+            margin-top: 1.6rem !important;
+        }
         h1 {
             font-size: 2.2rem;
         }
@@ -472,7 +475,7 @@
         }
 
         .container {
-            width: 100%;
+            width: 100% !important;
             margin: 0 0;
         }
 
@@ -488,6 +491,16 @@
 
         .desktop {
             display: none;
+        }
+        .avito-titles {
+            width: 50%;
+            padding-right: 10px;
+        }
+        .avito-col{
+            margin-left: 0;
+        }
+        .amount {
+            font-size: 1.1rem !important;
         }
 
     }

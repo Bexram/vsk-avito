@@ -1,6 +1,6 @@
 <template>
     <div class="body-wrapper">
-        <h2 class="form-text">Ответы на вопросы</h2>
+        <h2 class="form-text main-title">Ответы на вопросы</h2>
         <vue-collapsible-panel-group accordion base-color="FFFFFF">
             <vue-collapsible-panel :expanded="false">
                 <template #title>
@@ -127,8 +127,18 @@
     a {
         color: black;
     }
+    .body-wrapper {
+        padding-bottom: 100px;
+    }
 
-
+    @media screen and (max-width: 650px) {
+        .body-wrapper{
+            margin-top: 48px;
+        }
+    }
+    .main-title{
+        margin-bottom:0;
+    }
 
 
 </style>

@@ -58,7 +58,7 @@
                         <div class="img-container">
                             <img :src="require('/src/assets/adv3.svg')">
                         </div>
-                        <h2 class="form-text card-title">Больше заказов</h2>
+                        <h2 class="form-text card-title more">Больше заказов</h2>
                         <span class="form-text card-description">Способ сделать ваше предложение заметнее</span>
                     </div>
                 </swiper-slide>
@@ -115,12 +115,7 @@
     .flex-row {
         display: flex;
         flex-direction: row;
-        margin-left: -10px;
-        margin-right: -10px;
-    }
-
-    .container {
-        margin: 0 10px;
+        justify-content: space-between;
     }
 
     .card-title {
@@ -131,6 +126,7 @@
 
     .card-description {
         margin-top: 2px;
+        margin-bottom: 2.2rem;
         font-size: 0.8rem;
         line-height: 1.3rem;
     }
@@ -173,6 +169,8 @@
             font-size: 1rem;
             margin-bottom: 1rem;
         }
-
+        .more {
+            margin-bottom:0.5rem;
+        }
     }
 </style>

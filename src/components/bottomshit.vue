@@ -70,7 +70,7 @@
     .bottomsheet-header {
         border-radius: 30px 30px 0 0;
         width: 100%;
-        height: 20%;
+        height: 8rem;
         background: white;
     }
 
@@ -92,7 +92,7 @@
     }
 
     .body-item {
-        margin: 1rem 1.5rem;
+        margin: 2rem 1.5rem;
         font-size: 1rem;
     }
 
@@ -116,7 +116,7 @@
     }
 
     .right {
-        justify-content: right;
+        justify-content: flex-end;
     }
 
     .center {

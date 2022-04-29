@@ -27,6 +27,7 @@
 </script>
 
 <style>
+
     html {
         overflow-x: hidden;
     }
@@ -134,7 +135,7 @@
         .body-wrapper {
             width: 92%;
             margin: 0 4%;
-            margin-top: 2rem;
+            margin-top: 1.6rem;
         }
 
         h1 {
@@ -143,6 +144,9 @@
 
         h2 {
             font-size: 2rem;
+        }
+        .vcp__header {
+            height: auto !important;
         }
     }
 
