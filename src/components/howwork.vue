@@ -23,7 +23,7 @@
             <span class="form-text description">Если с заказом возникнет проблема, клиент должен обратиться в&nbsp;поддержку Авито. Вам это делать не&nbsp;нужно.</span>
         </div>
         <div class="flex-col">
-        <button class="pay">Оформить полис</button>
+        <button class="pay"> <a style="text-decoration:none; color:#FFFFFF" href="#form" v-smooth-scroll>Оформить полис </a></button>
         <span class="form-text grey">Услугу страхования оказывает страховое акционерное общество «ВСК» (ОГРН 1027700186062, лицензия Банка России СИ № 0621 от 11.09.2015, <a href="https://www.vsk.ru/">https://www.vsk.ru/)</a>. Правила и&nbsp;условия страхования. </span>
         </div>
 

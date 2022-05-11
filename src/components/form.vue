@@ -1,5 +1,5 @@
 <template>
-    <div class="body-wrapper">
+    <div class="body-wrapper" id="form">
         <h1 class="form-text">Оформите страховку на свои услуги</h1>
         <span class="form-text description">С ней легче привлечь клиентов. Если что-то сломается или испортится, заказчики могут получить
             до&nbsp;100&nbsp;000 ₽ компенсации от&nbsp;Страхового дома ВСК.</span>
