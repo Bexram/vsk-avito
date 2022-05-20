@@ -1,20 +1,41 @@
 <template>
-    <div class="wrapper"></div>
+    <div class="success__view">
+        <modal-window @hide="$emit('close')">
+            <template #context>
+                <div  class="context">
+                <h2>Страховка оплачена</h2>
+                <span>Полис придёт на вашу электронную почту. Как правило, это занимает несколько минут. Если письма долго нет, проверьте в папке «Спам».
+                </span>
+                </div>
+            </template>
+        </modal-window>
+    </div>
 </template>
 
 <script>
+    import ModalWindow from "@/components/modal/ModalWindow";
+
     export default {
-        name: "SuccessPay"
+        name: "SuccessPay",
+        components: {ModalWindow}
     }
 </script>
 
 <style scoped>
-    .wrapper {
-        width: 200px;
-        height: 100px;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        background-color: white;
+    .context{
+        margin: 2rem 2rem;
+        font-family: 'Arial';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+    }
+    @media (max-width: 428px) {
+        .context{
+            font-size: 12px;
+        }
+        h2 {
+            font-size: 18px;
+        }
     }
 </style>

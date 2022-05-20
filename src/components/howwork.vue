@@ -12,7 +12,7 @@
         </div>
         <div class="flex-row">
             <div class="circle"><span class="num">3</span></div>
-            <span class="form-text description">Пользователи, которые нажмут на значок в объявлении, увидят, в&nbsp;какой категории и&nbsp;до&nbsp;какого числа действительна страховка. Также заказчик может попросить вас показать полис.</span>
+            <span class="form-text description">Пользователи, которые нажмут на значок в объявлении, увидят, в&nbsp;какой категории и&nbsp;до&nbsp;действительна страховка, а также номер исполнителя (ID) для страховой компании. Заказчик может попросить вас показать полис.</span>
         </div>
         <div class="flex-row">
             <div class="circle"><span class="num">4</span></div>
@@ -20,11 +20,11 @@
         </div>
         <div class="flex-row">
             <div class="circle"><span class="num">5</span></div>
-            <span class="form-text description">Если с заказом возникнет проблема, клиент должен обратиться в&nbsp;поддержку Авито. Вам это делать не&nbsp;нужно.</span>
+            <span class="form-text description">Если с заказом возникнет проблема, клиент должен обратиться&nbsp;в страховую. Вам это делать не нужно. Узнать&nbsp;о документах можно&nbsp;в поддержке Авито.</span>
         </div>
         <div class="flex-col">
         <button class="pay"> <a style="text-decoration:none; color:#FFFFFF" href="#form" v-smooth-scroll>Оформить полис </a></button>
-        <span class="form-text grey">Услугу страхования оказывает страховое акционерное общество «ВСК» (ОГРН 1027700186062, лицензия Банка России СИ № 0621 от 11.09.2015, <a href="https://www.vsk.ru/">https://www.vsk.ru/)</a>. Правила и&nbsp;условия страхования. </span>
+            <span class="form-text grey">Услугу страхования оказывает страховое акционерное общество «ВСК» (ОГРН 1027700186062, лицензия Банка России СИ № 0621 от 11.09.2015, <a href="https://www.vsk.ru/">https://www.vsk.ru/)</a>. <a href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">Правила и&nbsp;условия страхования</a>. </span>
         </div>
 
 

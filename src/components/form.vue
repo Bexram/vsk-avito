@@ -92,7 +92,7 @@
                     <span v-if="PRICE" class="form-text amount">{{PRICE/100}} ₽ за месяц</span></div>
                 <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до&nbsp;100&nbsp;000&nbsp;₽.</span>
                 <button class="pay container-col" v-on:click="buyPolicy">Оплатить</button>
-                <span class="form-text grey mob container-col">Продолжая, я соглашаюсь <a class="grey" href="vsk.ru">на обработку персональных данных</a> страховым акционерным обществом «ВСК».</span>
+                <span class="form-text grey mob container-col">Продолжая, я принимаю <a class="grey" href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">правила</a> и <a class="grey" href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">условия страхования</a> и соглашаюсь <a class="grey" href="https://www.vsk.ru/about/confidentiality_policy/#?tab-1154">на обработку персональных данных</a> страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
         <transition appear name="fade">

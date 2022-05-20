@@ -5,14 +5,10 @@ const routes = [
         name: 'Mainpage',
     },
     {
-        path: '/success',
-        component: () => import('@/views/success.vue'),
+        path: '/:success',
+        component: () => import('@/App.vue'),
         name: 'SuccessPay',
-    },
-    {
-        path: '/fail',
-        component: () => import('@/views/fail.vue'),
-        name: 'FailPay',
+        props: {'success': true}
     },
 ]
 
