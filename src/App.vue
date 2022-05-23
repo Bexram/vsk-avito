@@ -94,7 +94,7 @@
     }
 
     h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     .description {
@@ -193,7 +193,7 @@
         }
 
         h2 {
-            font-size: 2rem;
+            font-size: 1.8rem ;
         }
 
         .vcp__header {

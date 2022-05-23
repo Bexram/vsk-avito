@@ -8,7 +8,7 @@
                 <div class="avito">
                     <div class="flex-col avito-titles">
                         <h2 class="form-text">ID Страхователя</h2>
-                        <h2 class="form-text">Дата регистрации на Авито</h2>
+                        <h2 class="form-text">Дата регистрации на&nbsp;Авито</h2>
                     </div>
                     <div class="flex-col avito-col">
                         <div class="avito_data"><span class="form-text">{{avitoid}}</span></div>
@@ -265,6 +265,10 @@
 </script>
 
 <style scoped>
+    .body-wrapper {
+        margin-top: 4rem;
+    }
+
     .fade-enter-active {
         transition: all .3s ease-out;
     }
@@ -284,22 +288,29 @@
     }
 
     .avito {
+        height: 4rem;
         display: flex;
         flex-direction: row;
         margin-left: 0 !important;
+        margin-bottom: 1rem;
     }
 
     .avito_data {
         height: 50%;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         font-size: 0.8rem;
     }
 
     .avito-titles {
         justify-content: space-between;
+
     }
 
+    .avito-titles>h2 {
+        margin: 0;
+        margin-bottom: 1rem;
+    }
     .avito-col {
         margin-left: 3.5rem;
         justify-content: space-between;

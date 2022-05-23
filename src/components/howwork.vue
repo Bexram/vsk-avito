@@ -20,7 +20,7 @@
         </div>
         <div class="flex-row">
             <div class="circle"><span class="num">5</span></div>
-            <span class="form-text description">Если с заказом возникнет проблема, клиент должен обратиться&nbsp;в страховую. Вам это делать не нужно. Узнать&nbsp;о документах можно&nbsp;в поддержке Авито.</span>
+            <span class="form-text description">Если с заказом возникнет проблема, клиент должен обратиться&nbsp;в страховую. Вам это делать не нужно. Узнать о&nbsp;документах можно в&nbsp;поддержке Авито.</span>
         </div>
         <div class="flex-col">
         <button class="pay"> <a style="text-decoration:none; color:#FFFFFF" href="#form" v-smooth-scroll>Оформить полис </a></button>

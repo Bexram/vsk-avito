@@ -8,7 +8,7 @@
                     <img :src="require('/src/assets/adv1.svg')">
                 </div>
 
-                <h2 class="form-text card-title">Защита от незапланированных трат</h2>
+                <h2 class="form-text card-title">Защита от&nbsp;незапланированных<br>трат</h2>
                 <span class="form-text card-description">ВСК изучает претензии заказчиков и&nbsp;при необходимости компенсирует ущерб</span>
             </div>
             <div class="card container flex-col">
@@ -40,7 +40,7 @@
                             <img :src="require('/src/assets/adv1.svg')">
                         </div>
 
-                        <h2 class="form-text card-title">Защита от незапланированных трат</h2>
+                        <h2 class="form-text card-title">Защита от&nbsp;незапланированных<br>трат</h2>
                         <span class="form-text card-description">ВСК изучает претензии заказчиков и&nbsp;при необходимости компенсирует ущерб</span>
                     </div>
                 </swiper-slide>

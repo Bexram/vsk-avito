@@ -81,7 +81,7 @@
                         <li>скриншоты переписки с исполнителем в мессенджере Авито, если есть;</li>
                         <li>банковские реквизиты. </li>
                     </ul>
-                    <span class="form-text description">Полный перечень можно найти в <a href="https://support.avito.ru/articles/2594">статье</a>.<br>
+                    <span class="form-text description">Полный перечень можно найти в <a class="note" href="https://support.avito.ru/articles/2594">статье</a>.<br>
                         <br>
                     Клиент может узнать подробности о документах у поддержки Авито. После того как ВСК получит все документы, страховой понадобится до&nbsp;5 рабочих дней, чтобы рассмотреть обращение. Если у&nbsp;компании не&nbsp;будет вопросов, она перечислит деньги на&nbsp;счёт клиента в&nbsp;течение суток. Как быстро они поступят, зависит от&nbsp;банка.
                     </span>
@@ -142,11 +142,16 @@
     a {
         color: black;
     }
+    .note {
+        text-decoration: none;
+        color:#00AAFF;
+    }
     .body-wrapper {
         padding-bottom: 100px;
     }
     .revert {
         height: 11rem;
+         padding-left: 0;
     }
 
 

@@ -44,7 +44,7 @@
     }
     img {
         margin-right: 10px;
-        margin-left: 10px;
+       
     }
     @media screen and (max-width: 650px) {
         .flex-row {
