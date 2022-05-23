@@ -68,20 +68,27 @@
                 </template>
                 <template #content>
                     <span class="form-text description">
-                    Если заказчику был причинён вред, в течение 5 календарных дней он может обратиться в&nbsp;страховую на <a class="form-text" href="mailto:avito_insurance@vsk.ru">avito_insurance@vsk.ru</a></span><br>
+                    Если заказчику был причинён вред, в течение 5 календарных дней он может обратиться в&nbsp;страховую на <a
+                            class="form-text" href="mailto:avito_insurance@vsk.ru">avito_insurance@vsk.ru</a></span><br>
                     <br>
                     <span class="form-text description">Понадобятся документы и&nbsp;доказательства:</span>
                     <ul class="form-text description">
                         <li>заявление на выплату в ВСК;</li>
                         <li>акт о повреждении или гибели имущества;</li>
-                        <li>2–3 фотографии до и после ущерба; </li>
-                        <li>чеки, по которым можно оценить ущерб. Например, о покупке товара, который сломался во время работ, о&nbsp;затратах на&nbsp;исправление ошибок исполнителя или&nbsp;на&nbsp;лечение, если пострадало здоровье;</li>
-                        <li>копия листа временной нетрудоспособности или медицинского заключения, если возникли проблемы со здоровьем;</li>
+                        <li>2–3 фотографии до и после ущерба;</li>
+                        <li>чеки, по которым можно оценить ущерб. Например, о покупке товара, который сломался во время
+                            работ, о&nbsp;затратах на&nbsp;исправление ошибок исполнителя или&nbsp;на&nbsp;лечение, если
+                            пострадало здоровье;
+                        </li>
+                        <li>копия листа временной нетрудоспособности или медицинского заключения, если возникли проблемы
+                            со здоровьем;
+                        </li>
                         <li>копия разворотов паспорта с фотографией и пропиской;</li>
                         <li>скриншоты переписки с исполнителем в мессенджере Авито, если есть;</li>
-                        <li>банковские реквизиты. </li>
+                        <li>банковские реквизиты.</li>
                     </ul>
-                    <span class="form-text description">Полный перечень можно найти в <a class="note" href="https://support.avito.ru/articles/2594">статье</a>.<br>
+                    <span class="form-text description">Полный перечень можно найти в <a class="note"
+                                                                                         href="https://support.avito.ru/articles/2594">статье</a>.<br>
                         <br>
                     Клиент может узнать подробности о документах у поддержки Авито. После того как ВСК получит все документы, страховой понадобится до&nbsp;5 рабочих дней, чтобы рассмотреть обращение. Если у&nbsp;компании не&nbsp;будет вопросов, она перечислит деньги на&nbsp;счёт клиента в&nbsp;течение суток. Как быстро они поступят, зависит от&nbsp;банка.
                     </span>
@@ -98,6 +105,7 @@
                         <li>Если вы исчерпали лимит в 100 000 ₽ по компенсациям.</li>
                         <li>Если вы препятствуете тому, чтобы клиент получил компенсацию. Например, отказываетесь заполнять заявление на выплату, о котором попросил заказчик.</li>
                     </ul>
+                    <span>-----</span>
                 </template>
             </vue-collapsible-panel>
             <vue-collapsible-panel :expanded="false">
@@ -132,36 +140,42 @@
         font-size: 1rem;
         line-height: 1.5rem;
     }
+
     li {
         list-style-type: none; /* Убираем маркеры у списка */
         margin-bottom: 1rem;
     }
+
     li:before {
         content: "— "; /* Добавляем в качестве маркера символ */
     }
+
     a {
         color: black;
     }
+
     .note {
         text-decoration: none;
-        color:#00AAFF;
+        color: #00AAFF;
     }
+
     .body-wrapper {
         padding-bottom: 100px;
     }
+
     .revert {
-        height: 11rem;
-         padding-left: 0;
+
+        padding-left: 0;
     }
 
-
     @media screen and (max-width: 650px) {
-        .body-wrapper{
+        .body-wrapper {
             margin-top: 48px;
         }
     }
-    .main-title{
-        margin-bottom:0;
+
+    .main-title {
+        margin-bottom: 0;
     }
 
 
