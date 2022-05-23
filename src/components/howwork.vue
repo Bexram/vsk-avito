@@ -55,7 +55,7 @@
         justify-content: center;
     }
     .pay {
-        max-width: 15rem;
+        width: 15rem;
         height: 3rem;
         background: #00AAFF;
         border-radius: 6px;
