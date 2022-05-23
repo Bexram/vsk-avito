@@ -92,7 +92,7 @@
                     <h2 class="form-text card-title">Как можно потерять значок «Страховка от ущерба»?</h2>
                 </template>
                 <template #content>
-                    <ul class="form-text description">
+                    <ul class="form-text description revert">
                         <li>Если срок действия полиса закончился, и вы не купили новый.</li>
                         <li>Если вы досрочно отказались от страховки.</li>
                         <li>Если вы исчерпали лимит в 100 000 ₽ по компенсациям.</li>
@@ -145,6 +145,10 @@
     .body-wrapper {
         padding-bottom: 100px;
     }
+    .revert {
+        height: 11rem;
+    }
+
 
     @media screen and (max-width: 650px) {
         .body-wrapper{
