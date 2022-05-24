@@ -26,8 +26,6 @@
             <a style="text-decoration:none; color:#FFFFFF" href="#form" v-smooth-scroll><button class="pay"> Оформить полис </button></a>
             <span class="form-text grey">Услугу страхования оказывает страховое акционерное общество «ВСК» (ОГРН 1027700186062, лицензия Банка России СИ № 0621 от 11.09.2015, <a href="https://www.vsk.ru/">https://www.vsk.ru/)</a>. <a href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">Правила и&nbsp;условия страхования</a>. </span>
         </div>
-
-
     </div>
 </template>
 

@@ -196,7 +196,7 @@
                         'date_avitoid': this.date_avitoid
                     }
                     this.BUY_POLICY(req).then((response) => {
-                        window.open(response.data)
+                        window.open(response.data,'_self',false)
                     })
                 }
             },
