@@ -7,7 +7,7 @@
             <div class="form-group container flex-col">
                 <div class="avito">
                     <div class="flex-col avito-titles">
-                        <h2 class="form-text">ID Страхователя</h2>
+                        <h2 class="form-text">ID страхователя</h2>
                         <h2 class="form-text">Дата регистрации на&nbsp;Авито</h2>
                     </div>
                     <div class="flex-col avito-col">
