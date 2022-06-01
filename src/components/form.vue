@@ -69,6 +69,7 @@
                                placeholder="+7 ___ ___-__-__"
                                v-model="phone"
                                v-mask="'+7 ### ###-##-##'"
+                               v-on:change="isPhoneValid"
                         >
                     </div>
                     <div class="container input-group">
@@ -201,6 +202,7 @@
                 }
             },
             onChangeSelectedCategory(input) {
+                this.required_category = false
                 this.want_select_category = false
                 if (input && input !== '') {
                     this.SUBCATEGORIES = null
@@ -226,6 +228,7 @@
                 }
             },
             onChangeSelectedSubCategory(input) {
+                this.required_subcategory = false
                 this.want_select_subcategory = false
                 if (input && input !== '') {
                     if (input.name) {
@@ -258,6 +261,14 @@
             },
             isEmailValid: function () {
                 return (this.email === "") ? "" : (this.reg.test(this.email)) ? this.required_email = false : this.required_email = true;
+            },
+            isPhoneValid() {
+                if (!this.phone || this.modifyPhone(this.phone).length !== 11) {
+                    this.required_phone = true
+                }
+                else {
+                    this.required_phone=false
+                }
             }
         },
 
