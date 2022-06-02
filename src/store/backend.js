@@ -54,7 +54,6 @@ export default {
             commit("SET_NULL_PRICE")
         },
         BUY_POLICY({commit},req) {
-            console.log(req)
             return axios({
                 method: "POST",
                 url: `https://api-creatum.bexram.online/avito/buy/`,

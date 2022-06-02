@@ -92,7 +92,15 @@
                     <!--                <div class="line"></div>-->
                     <span v-if="PRICE" class="form-text amount">{{PRICE/100}} ₽ за месяц</span></div>
                 <span v-if="PRICE" class="form-text description mob container-col">Полис действует 30 дней.<br> Клиентам компенсируют убытки до&nbsp;100&nbsp;000&nbsp;₽.</span>
-                <button class="pay container-col" v-on:click="buyPolicy">Оплатить</button>
+                <button class="pay container-col cursor-pointer" v-on:click="buyPolicy">
+                    <div v-if="!loading">Оплатить</div>
+                    <div class="preloader" v-if="loading">
+                        <svg class="preloader__image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="currentColor"
+                              d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z">
+                        </path>
+                    </svg></div>
+                </button>
                 <span class="form-text grey mob container-col">Продолжая, я принимаю <a class="grey" href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">правила</a> и <a class="grey" href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">условия страхования</a> и соглашаюсь <a class="grey" href="https://www.vsk.ru/about/confidentiality_policy/#?tab-1154">на обработку персональных данных</a> страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
@@ -119,7 +127,7 @@
 <script>
     import moment from 'moment'
     import {mapActions, mapGetters} from "vuex";
-    import VueSingleSelect from "vue-single-select";
+    import VueSingleSelect from "@/components/vue-single-select/VueSingleSelect";
     import BottomShit from "@/components/bottomshit";
     import {mask} from 'vue-the-mask'
 
@@ -131,6 +139,7 @@
         },
         data() {
             return {
+                loading: false,
                 selected_category: null,
                 selected_subcategory: null,
                 SUBCATEGORIES: null,
@@ -196,10 +205,14 @@
                         'avitoid': this.avitoid,
                         'date_avitoid': this.date_avitoid
                     }
+                    this.loading=true
                     this.BUY_POLICY(req).then((response) => {
+                        this.loading=false
                         window.open(response.data,'_self',false)
                     })
+
                 }
+
             },
             onChangeSelectedCategory(input) {
                 this.required_category = false
@@ -276,6 +289,36 @@
 </script>
 
 <style scoped>
+    .preloader {
+        overflow: hidden;
+        z-index: 1001;
+    }
+
+    .preloader__image {
+        position: relative;
+        width: 1.5rem;
+        height: 1.5rem;
+        text-align: center;
+        animation: preloader-rotate 2s infinite linear;
+    }
+
+    @keyframes preloader-rotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .loaded_hiding .preloader {
+        transition: 0.3s opacity;
+        opacity: 0;
+    }
+
+    .loaded .preloader {
+        display: none;
+    }
+    .cursor-pointer {
+        cursor: pointer;
+    }
     .body-wrapper {
         margin-top: 4rem;
     }
