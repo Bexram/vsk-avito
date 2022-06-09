@@ -96,10 +96,16 @@
                     <div v-if="!loading">Оплатить</div>
                     <div class="preloader" v-if="loading">
                         <svg class="preloader__image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23">
-                                <path d="M11.5802 21.6071C10.9293 21.6071 10.4016 21.0794 10.4016 20.4285C10.4016 19.7776 10.9293 19.25 11.5802 19.25C16.1365 19.25 19.8302 15.5563 19.8302 11C19.8302 6.44362 16.1365 2.74997 11.5802 2.74997C7.02385 2.74997 3.3302 6.44362 3.3302 11C3.3302 11.6509 2.80253 12.1785 2.15162 12.1785C1.50072 12.1785 0.973053 11.6509 0.973053 11C0.973053 5.1418 5.72203 0.392822 11.5802 0.392822C17.4384 0.392822 22.1873 5.1418 22.1873 11C22.1873 16.8581 17.4384 21.6071 11.5802 21.6071Z" fill="white"/>
-                        </svg></div>
+                            <path d="M11.5802 21.6071C10.9293 21.6071 10.4016 21.0794 10.4016 20.4285C10.4016 19.7776 10.9293 19.25 11.5802 19.25C16.1365 19.25 19.8302 15.5563 19.8302 11C19.8302 6.44362 16.1365 2.74997 11.5802 2.74997C7.02385 2.74997 3.3302 6.44362 3.3302 11C3.3302 11.6509 2.80253 12.1785 2.15162 12.1785C1.50072 12.1785 0.973053 11.6509 0.973053 11C0.973053 5.1418 5.72203 0.392822 11.5802 0.392822C17.4384 0.392822 22.1873 5.1418 22.1873 11C22.1873 16.8581 17.4384 21.6071 11.5802 21.6071Z"
+                                  fill="white"/>
+                        </svg>
+                    </div>
                 </button>
-                <span class="form-text grey mob container-col">Продолжая, я принимаю <a class="grey" href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">правила</a> и <a class="grey" href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">условия страхования</a> и соглашаюсь <a class="grey" href="https://www.vsk.ru/about/confidentiality_policy/#?tab-1154">на обработку персональных данных</a> страховым акционерным обществом «ВСК».</span>
+                <span class="form-text grey mob container-col">Продолжая, я принимаю <a class="grey"
+                                                                                        href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">правила</a> и <a
+                        class="grey"
+                        href="https://www.vsk.ru/upload/cache/default/tree/12/1109/tabs/Pravila-1801-A4.pdf">условия страхования</a> и соглашаюсь <a
+                        class="grey" href="https://www.vsk.ru/about/confidentiality_policy/#?tab-1154">на обработку персональных данных</a> страховым акционерным обществом «ВСК».</span>
             </div>
         </div>
         <transition appear name="fade">
@@ -175,7 +181,7 @@
                 BUY_POLICY: 'backend/BUY_POLICY',
                 NULL_PRICE: 'backend/NULL_PRICE',
             }),
-            format_date(value){
+            format_date(value) {
                 if (value) {
                     return moment(String(value)).format('DD.MM.YYYY')
                 }
@@ -203,10 +209,12 @@
                         'avitoid': this.avitoid,
                         'date_avitoid': this.date_avitoid
                     }
-                    this.loading=true
+                    this.loading = true
+                    window.dataLayer.push({'event': 'payment_redirect_initiated'});
                     this.BUY_POLICY(req).then((response) => {
-                        this.loading=false
-                        window.open(response.data,'_self',false)
+                        window.dataLayer.push({'event': 'payment_redirect'});
+                        this.loading = false
+                        window.open(response.data, '_self', false)
                     })
 
                 }
@@ -248,7 +256,10 @@
                         this.selected_subcategory = input
                     }
                     this.required_subcategory = false
-                    this.GET_PRICE({'subcat': this.selected_subcategory})
+                    this.GET_PRICE({'subcat': this.selected_subcategory}).then(() => {
+                        window.dataLayer.push({'event': 'price_shown'});
+                    })
+
                 } else {
                     this.selected_subcategory = null
                     this.NULL_PRICE()
@@ -271,14 +282,19 @@
                 return phone
             },
             isEmailValid: function () {
-                return (this.email === "") ? "" : (this.reg.test(this.email)) ? this.required_email = false : this.required_email = true;
+                return (this.email === "") ? "" : (this.reg.test(this.email)) ? this.verifyEmail() : this.required_email = true;
+
+            },
+            verifyEmail() {
+                this.required_email = false
+                window.dataLayer.push({'event': 'mail_entered'});
             },
             isPhoneValid() {
                 if (!this.phone || this.modifyPhone(this.phone).length !== 11) {
                     this.required_phone = true
-                }
-                else {
-                    this.required_phone=false
+                } else {
+                    this.required_phone = false
+                    window.dataLayer.push({'event': 'phone_entered'});
                 }
             }
         },
@@ -314,9 +330,11 @@
     .loaded .preloader {
         display: none;
     }
+
     .cursor-pointer {
         cursor: pointer;
     }
+
     .body-wrapper {
         margin-top: 4rem;
     }
@@ -359,10 +377,11 @@
 
     }
 
-    .avito-titles>h2 {
+    .avito-titles > h2 {
         margin: 0;
         margin-bottom: 1rem;
     }
+
     .avito-col {
         margin-left: 3.5rem;
         justify-content: space-between;
@@ -467,6 +486,7 @@
     h1 {
         font-size: 2rem !important;
     }
+
     h2 {
         font-weight: 700;
         font-size: 0.8rem;
@@ -504,6 +524,7 @@
         .form-all {
             margin-top: 1.6rem !important;
         }
+
         h1 {
             font-size: 2.2rem;
         }
@@ -555,13 +576,16 @@
         .desktop {
             display: none;
         }
+
         .avito-titles {
             width: 50%;
             padding-right: 10px;
         }
-        .avito-col{
+
+        .avito-col {
             margin-left: 0;
         }
+
         .amount {
             font-size: 1.1rem !important;
         }
