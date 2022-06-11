@@ -33,7 +33,7 @@
 
 
                 <div class="input-group mobile">
-                    <h2 class="form-text">Услуги</h2>
+                    <h2 class="form-text">Категория</h2>
                     <input readonly class="font-text input" v-model="selected_category" v-on:click="wantSelectCategory">
                     <span v-if="required_category" class="form-text error">Укажите категорию</span>
                 </div>
@@ -54,8 +54,8 @@
                 </div>
 
 
-                <div class="input-group mobile" v-if="selected_category">
-                    <h2 class="form-text">Категория</h2>
+                <div class="input-group mobile"  v-if="SUBCATEGORIES">
+                    <h2 class="form-text">Подкатегория</h2>
                     <input readonly class="input" v-model="selected_subcategory" v-on:click="wantSelectSubCategory">
                     <span v-if="required_subcategory" class="form-text error">Укажите подкатегорию</span>
                 </div>

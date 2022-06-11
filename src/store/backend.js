@@ -25,7 +25,7 @@ export default {
         GET_CATEGORY({commit}) {
             return axios({
                 method: "GET",
-                url: `https://api-creatum.bexram.online/avito/category/`
+                url: `https://api.vsk-avito.ru/category/`
             })
                 .then((response) => {
                     commit("SET_CATEGORY", response.data);
@@ -39,7 +39,7 @@ export default {
         GET_PRICE({commit},data) {
             return axios({
                 method: "POST",
-                url: `https://api-creatum.bexram.online/avito/calculate/`,
+                url: `https://api.vsk-avito.ru/calculate/`,
                 data: data
             })
                 .then((response) => {
@@ -56,7 +56,7 @@ export default {
         BUY_POLICY({commit},req) {
             return axios({
                 method: "POST",
-                url: `https://api-creatum.bexram.online/avito/buy/`,
+                url: `https://api.vsk-avito.ru/avito/buy/`,
                 data: req
             })
                 .then((response) => {
