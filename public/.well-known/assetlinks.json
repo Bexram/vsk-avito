@@ -1,0 +1,8 @@
+[{
+  "relation": ["lookalikes/allowlist"]
+  "target" : { "namespace": "web", "site": "https://vsk-avito.ru"}
+},
+{
+  "relation": ["lookalikes/allowlist"]
+  "target" : { "namespace": "web", "site": "https://avito.ru"}
+}] 
